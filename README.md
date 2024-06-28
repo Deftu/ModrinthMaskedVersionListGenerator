@@ -24,6 +24,8 @@ This was very quickly thrown together and has not been polished nor extensively 
 
 At the moment, this script only supports Fabric, Forge and NeoForge mods. If you would like to see support for other mod loaders, feel free to open an issue or pull request.
 
+Additionally, it only supports sem-ver versioning.
+
 ---
 
 **This project is licensed under [LGPL-3.0][lgpl]**\
