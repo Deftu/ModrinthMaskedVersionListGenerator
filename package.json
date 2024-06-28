@@ -1,0 +1,20 @@
+{
+    "name": "discord-message-version-list",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "ts-node src/index.ts"
+    },
+    "author": "Deftu",
+    "license": "LGPL-3.0-or-later",
+    "dependencies": {
+        "axios": "^1.7.2",
+        "prompt-sync": "^4.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.14.9",
+        "@types/prompt-sync": "^4.2.3",
+        "@types/semver": "^7.5.8",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.2"
+    }
+}
