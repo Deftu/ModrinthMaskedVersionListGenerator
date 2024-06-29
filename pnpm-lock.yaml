@@ -14,6 +14,9 @@ importers:
       prompt-sync:
         specifier: ^4.2.0
         version: 4.2.0
+      semver:
+        specifier: ^7.6.2
+        version: 7.6.2
     devDependencies:
       '@types/node':
         specifier: ^20.14.9
@@ -135,6 +138,11 @@ packages:
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
+  semver@7.6.2:
+    resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   strip-ansi@5.2.0:
     resolution: {integrity: sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==}
     engines: {node: '>=6'}
@@ -250,6 +258,8 @@ snapshots:
       strip-ansi: 5.2.0
 
   proxy-from-env@1.1.0: {}
+
+  semver@7.6.2: {}
 
   strip-ansi@5.2.0:
     dependencies:
