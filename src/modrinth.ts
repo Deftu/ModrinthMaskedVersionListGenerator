@@ -1,4 +1,5 @@
 import axios from "axios";
+import semver from "semver";
 
 export type ModLoader = "fabric" | "forge" | "neoforge";
 
@@ -20,19 +21,36 @@ export async function getModrinthVersions(
 }
 
 /**
- * Only returns the latest version_number from the versions array
- * Multiple versions can be for the same loader, but not the same game version
+ * Only returns the versions with the newest version number.
  */
 export function filterLatestReleases(
     versions: ModrinthVersion[]
 ): ModrinthVersion[] {
-    const result: ModrinthVersion[] = [];
-    const seen: { [key: string]: boolean } = {};
+    let result: ModrinthVersion[] = [];
+
+    let highestVersion: string | null = null;
     for (const version of versions) {
-        const key = `${version.loaders[0]}-${version.game_versions[0]}`;
-        if (!seen[key]) {
+        let versionNumber = version.version_number;
+        if (versionNumber.startsWith("v")) {
+            versionNumber = versionNumber.slice(1);
+        }
+
+        if (highestVersion === null) {
+            highestVersion = versionNumber;
+            result = [];
+        }
+
+        const parsedHighestVersion = semver.parse(highestVersion);
+        const parsedVersion = semver.parse(versionNumber);
+        if (parsedHighestVersion === null || parsedVersion === null) {
+            continue;
+        }
+
+        if (semver.gt(parsedVersion, parsedHighestVersion)) {
+            highestVersion = versionNumber;
+            result = [];
+        } else if (semver.eq(parsedVersion, parsedHighestVersion)) {
             result.push(version);
-            seen[key] = true;
         }
     }
 
