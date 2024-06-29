@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import prompt from "prompt-sync";
 const input = prompt();
 
@@ -12,30 +13,30 @@ import {
 
 async function main() {
     // Get the user's Modrinth project ID
-    const projectId = input("Enter the project ID: ");
+    const projectId = input(chalk.blue("Enter the project ID:") + " ");
     if (!projectId) {
-        console.log("Project ID is required");
+        console.error(chalk.bgRed("Project ID is required"));
         return;
     }
 
     // Get the versions of the Modrinth project
     const versions = await getModrinthVersions(projectId);
     if (versions.length === 0) {
-        console.log("No versions found");
+        console.log(chalk.bgRed("No versions found"));
         return;
     }
 
-    console.log(`Found ${versions.length} versions for that project`);
+    console.log(chalk.bgGreen(`Found ${versions.length} versions for that project`));
 
     // Get all of the versions for the latest release of the project
     const latestVersions = filterLatestReleases(versions);
-    console.log(`${latestVersions.length} of the versions are the "latest" release for that project`);
+    console.log(chalk.bgGreen(`${latestVersions.length} of the versions are the "latest" release for that project`));
 
     // Sort our versions so they appear in the message as they should
     const sortedVersions = sortVersions(latestVersions);
     // Create our message and log it out
     const message = constructMessage(sortedVersions);
-    console.log(message);
+    console.log(chalk.cyanBright(message));
 }
 
 /**
